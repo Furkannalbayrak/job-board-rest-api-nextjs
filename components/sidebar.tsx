@@ -1,4 +1,5 @@
 import { Briefcase, Users, FileText, Settings, LogOut } from "lucide-react"
+import Link from "next/link"
 
 export function Sidebar() {
     return (
@@ -24,6 +25,10 @@ export function Sidebar() {
                         </a>
                     </li>
                 </ul>
+
+                <Link href={'/sign-in'} >
+                    Sign in
+                </Link>
             </nav>
         </aside>
     )
