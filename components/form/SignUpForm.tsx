@@ -17,6 +17,7 @@ import Link from 'next/link';
 import GoogleSignInButton from '../GoogleSignInButton';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 const FormSchema = z
   .object({
@@ -59,7 +60,13 @@ const SignUpForm = () => {
       router.push("/sign-in");
     }
     else {
-      console.log("Registration failed");
+      toast.error("Error", {
+        description: "Oops! Something went wrong",
+        action: {
+          label: "Close",
+          onClick: () => console.log("Undo"),
+        },
+      })
     }
   };
 
