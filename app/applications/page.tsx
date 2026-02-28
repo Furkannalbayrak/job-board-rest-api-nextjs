@@ -3,7 +3,6 @@
 import { useApplications } from "@/hooks/use-applications"
 import { useRouter } from "next/navigation"
 import { Briefcase, MapPin, Calendar, Building2 } from "lucide-react"
-import { Sidebar } from "@/components/sidebar"
 
 export default function ApplicationsPage() {
     const router = useRouter()
@@ -16,7 +15,6 @@ export default function ApplicationsPage() {
     if (isLoading) {
         return (
             <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
                 <main className="flex-1 flex items-center justify-center">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 border-3 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
@@ -30,7 +28,6 @@ export default function ApplicationsPage() {
     if (error) {
         return (
             <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
                 <main className="flex-1 flex items-center justify-center">
                     <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-md">
                         <p className="text-gray-900 font-medium">Hata oluştu</p>
@@ -43,8 +40,6 @@ export default function ApplicationsPage() {
 
     return (
         <div className="flex min-h-screen bg-gray-50">
-            <Sidebar />
-
             <main className="flex-1 overflow-auto">
                 {/* Top Bar */}
                 <div className="bg-white border-b border-gray-200 px-8 py-4">
