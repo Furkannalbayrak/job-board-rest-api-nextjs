@@ -9,7 +9,7 @@ const page = async () => {
   return (
     <div>
       {session?.user ? (
-        <h2>Admin Page - welcome back {session.user.username}</h2>
+        <h2>Admin Page - welcome back {session.user.username || session.user.name}</h2>
       ) : (
         <div>Please login to see this admin page</div>
       )}
