@@ -30,7 +30,10 @@ const FormSchema = z.object({
 const SignInForm = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
+    // zodResolver(FormSchema): Formun içindeki her tuş vuruşunu Zod şemasına göre denetler. Eğer e-posta geçersizse, onSubmit fonksiyonun asla çalışmaz.
     resolver: zodResolver(FormSchema),
+    
+    // Formun ilk açılışındaki halidir. Next.js gibi SSR (Server Side Rendering) kullanan yapılarda boş bile olsa bunları tanımlamak "controlled component" hatalarını önler.
     defaultValues: {
       email: '',
       password: '',
@@ -38,6 +41,8 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+
+    //Bu kod lib/auth.ts içindeki "async authorize(credentials) { }" burayı çalıştırıyor. email ve passwordu oraya fırlatıyor
     const signInData = await signIn('credentials', {
       email: values.email,
       password: values.password,
