@@ -8,6 +8,37 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json(users);
 }
 
+export async function PATCH(req: Request) {
+    try {
+        const body = await req.json();
+        const { email, role } = body;
+
+        if (!email || !role) {
+            return NextResponse.json({ message: "Email ve Role bilgisi zorunludur" }, { status: 400 });
+        }
+
+        const updatedUser = await prisma.user.update({
+            where: {
+                email: email
+            },
+            data: {
+                role: role
+            }
+        })
+
+        // Şifreyi response'dan çıkaralım (güvenlik)
+        const { password: _, ...userWithoutPassword } = updatedUser;
+
+        return NextResponse.json(
+            { user: userWithoutPassword, message: "User updated successfully" },
+            { status: 200 }
+        );
+
+    } catch (error) {
+        return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    }
+}
+
 
 // Define a schema for input validation
 const UserSchema = z
