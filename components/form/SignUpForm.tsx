@@ -57,7 +57,7 @@ const SignUpForm = () => {
     });
 
     if (response.status === 200 || response.status === 201) {
-      router.push("/sign-in");
+      router.push(`/role-selection?email=${values.email}`);
     }
     else {
       toast.error("Error", {
