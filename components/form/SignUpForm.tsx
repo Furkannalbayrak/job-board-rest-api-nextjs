@@ -72,16 +72,20 @@ const SignUpForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
-        <div className='space-y-2'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
+        <div className='space-y-4'>
           <FormField
             control={form.control}
             name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel className="text-gray-700 font-medium">Kullanıcı Adı</FormLabel>
                 <FormControl>
-                  <Input placeholder='johndoe' {...field} />
+                  <Input
+                    placeholder='johndoe'
+                    className="h-11 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,9 +96,13 @@ const SignUpForm = () => {
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-gray-700 font-medium">Email</FormLabel>
                 <FormControl>
-                  <Input placeholder='mail@example.com' {...field} />
+                  <Input
+                    placeholder='mail@example.com'
+                    className="h-11 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,11 +113,12 @@ const SignUpForm = () => {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel className="text-gray-700 font-medium">Şifre</FormLabel>
                 <FormControl>
                   <Input
                     type='password'
-                    placeholder='Enter your password'
+                    placeholder='••••••••'
+                    className="h-11 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
                     {...field}
                   />
                 </FormControl>
@@ -122,11 +131,12 @@ const SignUpForm = () => {
             name='confirmPassword'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Re-Enter your password</FormLabel>
+                <FormLabel className="text-gray-700 font-medium">Şifre Tekrar</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder='Re-Enter your password'
+                    placeholder='••••••••'
                     type='password'
+                    className="h-11 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
                     {...field}
                   />
                 </FormControl>
@@ -135,18 +145,26 @@ const SignUpForm = () => {
             )}
           />
         </div>
-        <Button className='w-full mt-6' type='submit'>
-          Sign up
+        <Button className='w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm transition-all' type='submit'>
+          Kayıt Ol
         </Button>
       </form>
-      <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
-        or
+
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t border-gray-200" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-white px-2 text-gray-500">veya</span>
+        </div>
       </div>
-      <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
-      <p className='text-center text-sm text-gray-600 mt-2'>
-        If you don&apos;t have an account, please&nbsp;
-        <Link className='text-blue-500 hover:underline' href='/sign-in'>
-          Sign in
+
+      <GoogleSignInButton>Google ile Kayıt Ol</GoogleSignInButton>
+
+      <p className='text-center text-sm text-gray-600 mt-6'>
+        Zaten hesabınız var mı?&nbsp;
+        <Link className='font-medium text-blue-600 hover:text-blue-500 hover:underline transition-all' href='/sign-in'>
+          Giriş Yap
         </Link>
       </p>
     </Form>
