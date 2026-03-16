@@ -20,7 +20,7 @@ const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ children }) => {
   }
 
   return (
-    <Button disabled={isLoading} onClick={loginWithGoogle} className='w-full'>
+    <Button disabled={isLoading} onClick={loginWithGoogle} className='w-full py-5'>
       {isLoading && (
         <svg
           className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
