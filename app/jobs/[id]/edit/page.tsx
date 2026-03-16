@@ -3,7 +3,6 @@
 import { useJob } from "@/hooks/use-jobs"
 import { useParams, useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
-import { Sidebar } from "@/components/sidebar"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useQueryClient } from "@tanstack/react-query"
@@ -60,7 +59,6 @@ export default function EditJobPage() {
     if (isLoading) {
         return (
             <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
                 <main className="flex-1 flex items-center justify-center">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 border-3 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
@@ -74,7 +72,6 @@ export default function EditJobPage() {
     if (error || !job) {
         return (
             <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
                 <main className="flex-1 flex items-center justify-center">
                     <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-md">
                         <p className="text-gray-900 font-medium">İlan bulunamadı</p>
@@ -92,7 +89,6 @@ export default function EditJobPage() {
 
     return (
         <div className="flex min-h-screen bg-gray-50">
-            <Sidebar />
 
             <main className="flex-1 overflow-auto">
                 {/* Top Bar */}

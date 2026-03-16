@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
-import { Sidebar } from "@/components/sidebar"
 import { useState } from "react"
 import { useCreateJob } from "@/hooks/use-jobs"
 
@@ -32,7 +31,6 @@ export default function NewJobPage() {
 
     return (
         <div className="flex min-h-screen bg-gray-50">
-            <Sidebar />
 
             <main className="flex-1 overflow-auto">
                 {/* Top Bar */}
