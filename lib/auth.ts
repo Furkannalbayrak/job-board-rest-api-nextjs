@@ -62,6 +62,7 @@ export const authOptions: NextAuthOptions = {
                     id: existingUser.id,
                     username: existingUser.username,
                     email: existingUser.email,
+                    role: existingUser.role,
                 }
             }
         })
@@ -80,6 +81,8 @@ export const authOptions: NextAuthOptions = {
                 return {
                     ...token,                   // Token içindeki mevcut her şeyi kopyala (id, email vs.)
                     username: user.username,    // Üzerine bir de username'i ekle (artık jetonumuzda bu da var!)
+                    id: user.id,
+                    role: user.role
                 }
             }
 
@@ -95,7 +98,9 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {     // User objesini güncellemeye başla:
                     ...session.user,  //İçinde oturumun ne zaman biteceği (expires) gibi bilgiler vardır. Bunları kaybetmemek için masaya döküyoruz.
-                    username: token.username  //Sadece user: { username: token.username } yazarsan, kullanıcının email ve image gibi diğer bilgilerini silmiş olursun. Bu yüzden önce mevcut session.user bilgilerini yayıyoruz,
+                    username: token.username,  //Sadece user: { username: token.username } yazarsan, kullanıcının email ve image gibi diğer bilgilerini silmiş olursun. Bu yüzden önce mevcut session.user bilgilerini yayıyoruz,
+                    id: token.id,
+                    role: token.role
                 }
             }
         }
