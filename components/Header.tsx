@@ -1,11 +1,12 @@
 import { authOptions } from "@/lib/auth";
-import { Briefcase, Users, LogIn } from "lucide-react"
+import { Briefcase, Users, LogIn, Building2 } from "lucide-react"
 import { getServerSession } from "next-auth";
 import Link from "next/link"
 import UserAccountNav from "./UserAccountNav";
 
 export async function Header() {
     const session = await getServerSession(authOptions);
+    const user = session?.user;
 
     return (
         <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -26,22 +27,35 @@ export async function Header() {
                                 <Briefcase className="w-4 h-4" />
                                 İş İlanları
                             </Link>
-                            <Link href="/applications" className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
-                                <Users className="w-4 h-4" />
-                                Başvurular
-                            </Link>
+
+                            {user?.role === "JOB_SEEKER" && (
+                                <Link href="/applications" className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <Users className="w-4 h-4" />
+                                    Başvurularım
+                                </Link>
+                            )}
+
+                            {user?.role === "EMPLOYER" && (
+                                <>
+                                    <Link href="/my-jobs" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                                        <Building2 className="w-4 h-4" />
+                                        İlanlarım
+                                    </Link>
+
+                                    <div className="bg-white border-b border-gray-200 px-8 py-4">
+                                        <div className="flex items-center justify-between">
+                                            <Link href="/jobs/new" className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
+                                                + Yeni İlan Ekle
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </nav>
                     </div>
 
                     {/* Sağ Taraf: Admin ve Profil */}
                     <div className="flex items-center gap-4">
-                        <Link
-                            href="/admin"
-                            className="text-sm font-medium text-gray-600 hover:text-gray-900 border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50 transition-all"
-                        >
-                            Admin Panel
-                        </Link>
-
                         {session?.user ? (
                             <div>
                                 <UserAccountNav />
@@ -49,7 +63,7 @@ export async function Header() {
                         ) :
                             (
                                 <div>
-                                    <Link href={'/sign-in'} >
+                                    <Link href={'/sign-in'}  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
                                         <LogIn className="w-4 h-4" />
                                         Sign in
                                     </Link>
