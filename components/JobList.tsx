@@ -38,7 +38,7 @@ export default function JobList() {
             {/* Main Content */}
             <main className="flex-1 overflow-auto">
                 {/* Top Bar */}
-                <div className="bg-white border-b border-gray-200 px-8 py-4">
+                {/* <div className="bg-white border-b border-gray-200 px-8 py-4">
                     <div className="flex items-center justify-between">
                         <div>
                             <h2 className="text-2xl font-bold text-gray-900">İş İlanları</h2>
@@ -53,7 +53,7 @@ export default function JobList() {
                             + Yeni İlan Ekle
                         </button>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Content */}
                 <div className="p-8">
@@ -63,14 +63,14 @@ export default function JobList() {
                             <h3 className="text-lg font-medium text-gray-900 mb-2">
                                 Henüz iş ilanı yok
                             </h3>
-                            <p className="text-gray-500 mb-6">
+                            {/* <p className="text-gray-500 mb-6">
                                 Yeni bir ilan ekleyerek başlayın
                             </p>
                             <button
                                 onClick={() => router.push('/jobs/new')}
                                 className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
                                 İlk İlanı Ekle
-                            </button>
+                            </button> */}
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
